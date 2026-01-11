@@ -21,39 +21,37 @@ export const MusicPlayer: React.FC<MusicPlayerProps> = ({ songs }) => {
 
   // Auto-play on mount and reset position on refresh
   useEffect(() => {
-    if (audioRef.current && songs.length > 0) {
-      // Always reset to beginning on mount/refresh
-      audioRef.current.currentTime = 0;
-      audioRef.current.load();
-    }
-
-    const tryAutoPlay = () => {
+    const tryAutoPlay = async () => {
       if (audioRef.current && songs.length > 0 && !userInteracted) {
-        // Ensure we start from the beginning
-        audioRef.current.currentTime = 0;
-        audioRef.current.load();
-        const playPromise = audioRef.current.play();
-        
-        if (playPromise !== undefined) {
-          playPromise
-            .then(() => {
-              setIsPlaying(true);
-              setUserInteracted(true);
-            })
-            .catch(() => {
-              // Autoplay prevented, will need user interaction
-            });
+        try {
+          // Reset to beginning
+          audioRef.current.currentTime = 0;
+          audioRef.current.load();
+          
+          // Try to play immediately
+          await audioRef.current.play();
+          setIsPlaying(true);
+          setUserInteracted(true);
+        } catch (error) {
+          // Autoplay prevented, try again after short delay
+          setTimeout(async () => {
+            if (audioRef.current && !userInteracted) {
+              try {
+                audioRef.current.currentTime = 0;
+                await audioRef.current.play();
+                setIsPlaying(true);
+                setUserInteracted(true);
+              } catch (e) {
+                // Still blocked, will need user interaction
+              }
+            }
+          }, 100);
         }
       }
     };
 
-    // Try immediately
+    // Try immediately on mount
     tryAutoPlay();
-    
-    // Also try after a small delay (in case audio element isn't ready)
-    const timeoutId = setTimeout(tryAutoPlay, 100);
-    
-    return () => clearTimeout(timeoutId);
   }, [songs.length, userInteracted]);
 
   useEffect(() => {

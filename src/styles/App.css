@@ -765,59 +765,103 @@ body.screen-shake {
 
 /* Responsive Design for Celebration Screen */
 @media (max-width: 768px) {
+  .celebration-screen {
+    padding: 0.5rem;
+  }
+
   .celebration-content {
-    padding: 2.5rem 2rem;
+    padding: 1.5rem 1rem;
     max-width: 95%;
+    border-radius: 25px;
   }
 
   .celebration-title {
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    line-height: 1.2;
   }
 
   .acrostic-letter {
-    font-size: 2.5rem;
-    min-width: 45px;
+    font-size: 1.8rem;
+    min-width: 32px;
   }
 
   .acrostic-text {
-    font-size: 1.3rem;
+    font-size: 0.95rem;
+    line-height: 1.3;
   }
 
   .acrostic-container {
-    gap: 1.2rem;
-    margin: 2rem 0;
+    gap: 0.8rem;
+    margin: 1.25rem 0 0.5rem;
+  }
+
+  .acrostic-line {
+    gap: 0.6rem;
   }
 }
 
 @media (max-width: 480px) {
+  .celebration-screen {
+    padding: 0.5rem;
+    align-items: flex-start;
+    padding-top: 1.5rem;
+  }
+
   .celebration-content {
-    padding: 2rem 1.5rem;
-    border-radius: 30px;
+    padding: 1.25rem 0.85rem;
+    border-radius: 20px;
+    max-width: 98%;
   }
 
   .celebration-title {
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
+    font-size: 1.3rem;
+    margin-bottom: 0.85rem;
+    line-height: 1.2;
   }
 
   .acrostic-line {
-    flex-direction: column;
-    align-items: flex-start;
     gap: 0.5rem;
+    align-items: flex-start;
   }
 
   .acrostic-letter {
-    font-size: 2rem;
-    min-width: 40px;
+    font-size: 1.4rem;
+    min-width: 26px;
+    padding-top: 1px;
   }
 
   .acrostic-text {
-    font-size: 1.1rem;
+    font-size: 0.8rem;
+    line-height: 1.25;
   }
 
   .acrostic-container {
-    gap: 1rem;
+    gap: 0.6rem;
+    margin: 1rem 0 0.4rem;
+  }
+}
+
+@media (max-width: 375px) {
+  .celebration-content {
+    padding: 1rem 0.75rem;
+  }
+
+  .celebration-title {
+    font-size: 1.15rem;
+  }
+
+  .acrostic-letter {
+    font-size: 1.3rem;
+    min-width: 24px;
+  }
+
+  .acrostic-text {
+    font-size: 0.75rem;
+  }
+
+  .acrostic-container {
+    gap: 0.5rem;
   }
 }
 
