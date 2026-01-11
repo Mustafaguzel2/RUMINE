@@ -16,9 +16,8 @@ const songs: Song[] = [
   { title: 'Arctic Monkeys - R U Mine', url: song1 },
 ];
 
-// Video dosyasını buraya ekleyin (opsiyonel)
-import romanticVideo from './assets/videos/Candle_Romance.mp4';
-const videoSource: string | undefined = romanticVideo;
+// Video dosyası Cloudinary'den çekiliyor
+const videoSource: string | undefined = 'https://res.cloudinary.com/dhfe1lxs1/video/upload/v1768124982/Candle_Romance_jckwbr.mp4';
 
 function App() {
   const [showConfetti, setShowConfetti] = useState(false);
